@@ -1,4 +1,4 @@
-package com.example.casem4.model;
+package com.example.casem4.model.DTO;
 
 import jakarta.validation.constraints.*;
 import org.springframework.validation.Errors;

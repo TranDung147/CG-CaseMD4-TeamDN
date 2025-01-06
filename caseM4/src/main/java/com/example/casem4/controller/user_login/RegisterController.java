@@ -1,6 +1,6 @@
 package com.example.casem4.controller.user_login;
 
-import com.example.casem4.model.AppUserDTO;
+import com.example.casem4.model.DTO.AppUserDTO;
 import com.example.casem4.service.AppUser.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

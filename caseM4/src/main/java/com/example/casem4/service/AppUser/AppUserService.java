@@ -2,7 +2,7 @@ package com.example.casem4.service.AppUser;
 
 import com.example.casem4.model.AppRole;
 import com.example.casem4.model.AppUser;
-import com.example.casem4.model.AppUserDTO;
+import com.example.casem4.model.DTO.AppUserDTO;
 import com.example.casem4.model.UserDetail;
 import com.example.casem4.repository.IAppRoleRepository;
 import com.example.casem4.repository.IAppUserDetailRepository;
