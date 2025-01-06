@@ -28,8 +28,8 @@
         <form th:action="@{/logout}" method="POST">
             <button type="submit" th:class="'btn btn-danger'" th:text="'Đăng xuất'"></button>
         </form>
-    </div>
 
+    </div>
     <div th:if="${phoneList != null}" th:class="'row mt-4'">
         <div th:each="p : ${phoneList.content}" th:class="'col-md-3 mb-4'">
             <div th:class="'card product-card'">
@@ -66,7 +66,6 @@
             </ul>
         </nav>
     </div>
-
     <div th:if="${phoneList == null || phoneList.content.isEmpty()}" th:class="'alert alert-warning text-center mt-4'">
         <span th:text="'Không có sản phẩm để hiển thị.'"></span>
     </div>

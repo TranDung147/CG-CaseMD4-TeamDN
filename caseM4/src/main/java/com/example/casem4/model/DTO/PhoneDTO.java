@@ -1,7 +1,6 @@
-package com.example.casem4.model;
+package com.example.casem4.model.DTO;
 
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import com.example.casem4.model.Brand;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

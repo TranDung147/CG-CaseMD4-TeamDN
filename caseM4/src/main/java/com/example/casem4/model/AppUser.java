@@ -17,6 +17,18 @@ public class AppUser {
     @JoinColumn(name = "role_id")
     private AppRole role;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
+    private UserDetail userDetail;
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
+
     public AppUser() {
     }
 

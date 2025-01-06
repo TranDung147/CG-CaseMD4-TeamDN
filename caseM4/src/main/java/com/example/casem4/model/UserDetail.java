@@ -16,6 +16,9 @@ public class UserDetail {
 
     private Integer phone;
 
+    @OneToOne(mappedBy = "userDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private AppUser appUser;
+
     public UserDetail() {}
     public UserDetail(int id, String name, String address, String email, Integer phone) {
 
