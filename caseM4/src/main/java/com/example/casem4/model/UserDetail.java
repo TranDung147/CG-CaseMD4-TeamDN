@@ -5,8 +5,7 @@ import jakarta.persistence.*;
 public class UserDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -16,12 +15,20 @@ public class UserDetail {
 
     private Integer phone;
 
-    @OneToOne(mappedBy = "userDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
     private AppUser appUser;
 
-    public UserDetail() {}
-    public UserDetail(int id, String name, String address, String email, Integer phone) {
+    public UserDetail() {
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -56,12 +63,11 @@ public class UserDetail {
         this.phone = phone;
     }
 
-    public int getId() {
-
-        return id;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

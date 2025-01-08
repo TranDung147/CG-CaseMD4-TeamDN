@@ -2,55 +2,48 @@ package com.example.casem4.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Cart {
     @Id
-    @Column(name = "user_id")
-    private Integer userID; // Khóa chính là userID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cart_id;
 
+    //1 Cart là của 1 User
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private AppUser user;
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private AppUser appUser;
 
-    @ManyToOne
-    @JoinColumn(name = "phone_id", referencedColumnName = "id")
-    private Phone phone;
-    private Integer quantity;
+    //1 Cart có nhiều điện thoại
+    @OneToMany(mappedBy = "cart_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CartItem> cartItems = new ArrayList<>();
 
     public Cart() {
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Integer getCartID() {
+        return cart_id;
     }
 
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setCartID(Integer cart_id) {
+        this.cart_id = cart_id;
     }
 
     public AppUser getUser() {
-        return user;
+        return appUser;
     }
 
     public void setUser(AppUser user) {
-        this.user = user;
+        this.appUser = user;
     }
 
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
 }

@@ -2,12 +2,15 @@ package com.example.casem4.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Phone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer phone_id;
 
     private String name;
 
@@ -26,27 +29,50 @@ public class Phone {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CartItem> cartItems = new ArrayList<>();
+
+    // 1 Phone có thể xuất hiện trong nhiều OrderDetail
+    @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetails;
+
+    // 1 Phone có nhiều Feedback
+    @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Feedback> feedbacks;
+
     public Phone() {
     }
 
-    public Phone(Integer id, String name, Integer capacity, Integer ram, String color, Double price, String origin, Brand brand, String imgURL) {
-        this.id = id;
-        this.name = name;
-        this.capacity = capacity;
-        this.ram = ram;
-        this.color = color;
-        this.price = price;
-        this.origin = origin;
-        this.brand = brand;
-        this.imgURL = imgURL;
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
     }
 
-    public Integer getId() {
-        return id;
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public Integer getPhone_id() {
+        return phone_id;
+    }
+
+    public void setPhone_id(Integer phone_id) {
+        this.phone_id = phone_id;
     }
 
     public String getName() {
@@ -97,14 +123,6 @@ public class Phone {
         this.origin = origin;
     }
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
     public String getImgURL() {
         return imgURL;
     }
@@ -113,18 +131,11 @@ public class Phone {
         this.imgURL = imgURL;
     }
 
-    @Override
-    public String toString() {
-        return "Phone{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", capacity=" + capacity +
-                ", ram=" + ram +
-                ", color='" + color + '\'' +
-                ", price=" + price +
-                ", origin='" + origin + '\'' +
-                ", imgURL='" + imgURL + '\'' +
-                ", brand=" + brand +
-                '}';
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }
