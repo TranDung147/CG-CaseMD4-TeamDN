@@ -108,3 +108,6 @@ VALUES
     ('Vivo V21e 5G', 128, 8, 'Silver', 7300000, 'China', 5, '/Images/Vivo/Vivo_V21e_5G.jpg'),
     ('Vivo T1 Pro 5G', 128, 8, 'Turbo Black', 7100000, 'China', 5, '/Images/Vivo/Vivo_T1_Pro_5G.jpg'),
     ('Vivo Y02', 64, 3, 'Fluorite Blue', 18900000, 'China', 5, '/Images/Vivo/Vivo_Y02.webp');
+
+INSERT INTO user_detail (name, email, phone, address, user_id)
+VALUES ('Nguyễn Văn Admin', 'admin@gmail.com', '0123456789', 'Codegym', 1);

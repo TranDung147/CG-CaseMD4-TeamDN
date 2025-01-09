@@ -19,17 +19,18 @@ public class AppUserService implements IAppUserService {
 
     @Autowired
     private IAppUserDetailRepository appUserDetailRepository;
+
     @Autowired
     private IAppRoleRepository appRoleRepository;
 
-
+    // Xác thực người dùng
     @Override
     public boolean authenticateUser(String username, String password) {
         AppUser appUser = appUserRepository.findByUsername(username);
-        return appUser != null &&  appUser.getPassword().equals(password);
+        return appUser != null && appUser.getPassword().equals(password);
     }
 
-
+    // Đăng ký người dùng
     @Override
     public boolean registerUser(AppUserDTO appUserDTO) {
         if (appUserRepository.findByUsername(appUserDTO.getUsername()) != null) {
@@ -39,7 +40,6 @@ public class AppUserService implements IAppUserService {
         if (defaultRole == null) {
             return false;
         }
-
         AppUser appUser = new AppUser();
         appUser.setUsername(appUserDTO.getUsername());
         appUser.setPassword(appUserDTO.getPassword());
@@ -48,28 +48,29 @@ public class AppUserService implements IAppUserService {
         return true;
     }
 
+    // Kiểm tra người dùng theo username
     public boolean checkUserByUsername(String username) {
         return appUserRepository.findByUsername(username) != null;
     }
 
-
-
-    // Phương thức reset mật khẩu
-    @Override
-    public boolean resetPassword(String email) {
-        // Tìm kiếm người dùng bằng email
-        UserDetail userDetail = appUserDetailRepository.findByEmail(email);
-        if (userDetail != null) {
-            // Gửi email để reset mật khẩu (giả sử bạn sẽ sử dụng một thư viện để gửi email)
-            // Ví dụ: sử dụng JavaMail để gửi email reset mật khẩu
-            // Hoặc có thể tạo mã xác nhận để người dùng đặt lại mật khẩu của mình
-            return true; // Trả về true nếu gửi email thành công
-        }
-        return false; // Nếu không tìm thấy email trong hệ thống
+    // Kiểm tra người dùng theo email
+    public boolean checkUserByEmail(String email) {
+        return appUserDetailRepository.findByEmail(email) != null;
     }
 
-    // Phương thức kiểm tra email đã tồn tại trong hệ thống (đã có trong yêu cầu)
-    public boolean checkUserByEmail(String email) {
-        return appUserDetailRepository.findByEmail(email) != null; // Kiểm tra xem email đã tồn tại chưa
+    // Reset mật khẩu
+    @Override
+    public boolean resetPassword(String email) {
+        UserDetail userDetail = appUserDetailRepository.findByEmail(email);
+        if (userDetail != null) {
+            System.out.println("Email reset password sent to: " + email);
+            return true;
+        }
+        return false;
+    }
+
+    // Thêm phương thức lấy thông tin chi tiết người dùng
+    public UserDetail getUserDetailById(Integer id) {
+        return appUserDetailRepository.findById(id).orElse(null);
     }
 }

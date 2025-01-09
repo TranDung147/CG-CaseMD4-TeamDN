@@ -1,23 +1,23 @@
 package com.example.casem4.model;
 
 import jakarta.persistence.*;
+
 @Entity
 public class UserDetail {
 
+    // Sử dụng @Id để chỉ định cột khóa chính
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Thêm tự động tăng cho id
     private Long id;
 
     private String name;
-
     private String address;
-
     private String email;
-
     private Integer phone;
 
+    // Mối quan hệ OneToOne với AppUser
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id")  // Cột khóa ngoại tham chiếu tới AppUser
     private AppUser appUser;
 
     public UserDetail() {
