@@ -11,6 +11,9 @@ import com.example.casem4.service.AppUser.imple.IAppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AppUserService implements IAppUserService {
 
@@ -72,5 +75,18 @@ public class AppUserService implements IAppUserService {
     // Thêm phương thức lấy thông tin chi tiết người dùng
     public UserDetail getUserDetailById(Integer id) {
         return appUserDetailRepository.findById(id).orElse(null);
+    }
+
+    // Thêm phương thức lấy danh sách user từ id = 2 trở xuống
+    public List<UserDetail> getUserDetailsFromId(int id) {
+        return appUserDetailRepository.findByIdLessThanEqual(id);
+    }
+
+    public void saveUser(UserDetail userDetail) {
+        appUserDetailRepository.save(userDetail);
+    }
+
+    public void deleteUser(Integer id) {
+        appUserDetailRepository.deleteById(id);
     }
 }

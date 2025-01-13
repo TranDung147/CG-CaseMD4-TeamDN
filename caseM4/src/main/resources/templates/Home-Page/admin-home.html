@@ -7,42 +7,26 @@
     <link rel="stylesheet" href="/css/styles.css">
     <style>
         .sidebar {
-            height: 100vh;
-            position: fixed;
-            padding-top: 100px;
-            left: 0;
-            bottom: 0;
-            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 20px;
         }
-        .content {
-            margin-left: 25%;
+        .list-group-item a {
+            text-decoration: none;
+            color: #000;
+        }
+        .list-group-item:hover {
+            background: #e9ecef;
+        }
+        .logout-button {
+            border-top: 1px solid #dee2e6;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 sidebar border-end">
-            <ul class="list-group">
-                <li class="list-group-item"><a class="list-group-item" th:href="@{/admin-home/dashboard}">Thống kê</a></li>
-                <li class="list-group-item">
-                    Quản lý sản phẩm
-                    <ul>
-                        <li><a class="list-group-item" th:href="@{/admin-home/brand-manager}">Brand</a></li>
-                        <li><a class="list-group-item" th:href="@{/admin-home/phone-manager}">Phone</a></li>
-                    </ul>
-                </li>
-                <li class="list-group-item"><a class="list-group-item" th:href="@{/admin-home/user-management}">Quản lý người dùng</a></li>
-                <li class="list-group-item"><a class="list-group-item" th:href="@{/admin-home/profile-admin}">Chỉnh sửa thông tin</a></li>
-                <li class="list-group-item">
-                    <form th:action="@{/login}" method="POST">
-                        <button type="submit" th:class="'btn btn-danger'" th:text="'Đăng xuất'"></button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Nội dung chính -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
         <div class="col-md-9 content">
             <h2>Chào mừng đến với Trang chủ Ác MINK</h2>
             <p>Đăng nhập thành công!</p>

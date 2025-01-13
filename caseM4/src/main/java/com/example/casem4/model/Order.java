@@ -3,21 +3,28 @@ package com.example.casem4.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "Orderr")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer order_id;
+    @Column(name = "order_id")
+    private Integer orderId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private AppUser appUser;
 
-    private LocalDateTime created_date;
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+
+    @Column(name = "status")
     private Integer status;
+
+    @Column(name = "total_price")
     private Long totalPrice;
 
     // 1 Order có nhiều OrderDetail
@@ -27,36 +34,29 @@ public class Order {
     public Order() {
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
+
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
-    }
-
-    public AppUser getUser() {
+    public AppUser getAppUser() {
         return appUser;
     }
 
-    public void setUser(AppUser user) {
-        this.appUser = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
-    public LocalDateTime getCreated_date() {
-        return created_date;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(LocalDateTime created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Integer getStatus() {
@@ -73,5 +73,13 @@ public class Order {
 
     public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }

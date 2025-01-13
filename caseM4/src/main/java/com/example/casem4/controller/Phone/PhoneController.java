@@ -31,6 +31,4 @@
 //        Pageable pageable = PageRequest.of(page, size, sort);
 //        Page<Phone> phoneList = phoneService.findAll(pageable);
 //        model.addAttribute("phoneList", phoneList);
-//        return "redirect:/";
-//    }
-//}
+//        return "redire
