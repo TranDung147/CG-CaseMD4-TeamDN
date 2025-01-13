@@ -8,7 +8,7 @@ public class UserDetail {
     // Sử dụng @Id để chỉ định cột khóa chính
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Thêm tự động tăng cho id
-    private Long id;
+    private Integer userDetailId;
 
     private String name;
     private String address;
@@ -17,18 +17,18 @@ public class UserDetail {
 
     // Mối quan hệ OneToOne với AppUser
     @OneToOne
-    @JoinColumn(name = "user_id")  // Cột khóa ngoại tham chiếu tới AppUser
+    @JoinColumn(name = "userId")  // Cột khóa ngoại tham chiếu tới AppUser
     private AppUser appUser;
 
     public UserDetail() {
     }
 
-    public Long getId() {
-        return id;
+    public Integer getUserDetailId() {
+        return userDetailId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserDetailId(Integer userDetailId) {
+        this.userDetailId = userDetailId;
     }
 
     public String getName() {

@@ -9,7 +9,7 @@ public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int brand_id;
+    private int brandId;
 
     private String name;
 
@@ -19,18 +19,18 @@ public class Brand {
     public Brand() {
     }
 
-    public Brand(int brand_id, String name, List<Phone> phones) {
-        this.brand_id = brand_id;
+    public Brand(int brandId, String name, List<Phone> phones) {
+        this.brandId = brandId;
         this.name = name;
         this.phones = phones;
     }
 
-    public int getBrand_id() {
-        return brand_id;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrand_id(int brand_id) {
-        this.brand_id = brand_id;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
     public String getName() {

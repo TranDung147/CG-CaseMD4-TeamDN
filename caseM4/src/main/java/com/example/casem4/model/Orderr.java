@@ -6,22 +6,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Orderr")
-public class Order {
-
+public class Orderr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private AppUser appUser;
 
-    @Column(name = "created_date")
     private LocalDateTime createdDate;
-
-    @Column(name = "status")
     private Integer status;
 
     @Column(name = "total_price")
@@ -31,9 +25,8 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetails;
 
-    public Order() {
+    public Orderr() {
     }
-
 
     public Integer getOrderId() {
         return orderId;
@@ -43,7 +36,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public AppUser getAppUser() {
+    public AppUser getUser() {
         return appUser;
     }
 

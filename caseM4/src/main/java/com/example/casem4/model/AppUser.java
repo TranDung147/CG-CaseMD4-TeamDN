@@ -10,14 +10,14 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;  // Đổi kiểu dữ liệu từ Integer sang Long
+    private Long userId;  // Đổi kiểu dữ liệu từ Integer sang Long
 
     private String username;
     private String password;
 
     // 1 User chỉ có 1 role
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "roleId")
     private AppRole role;
 
     // 1 User có 1 userDetail
@@ -34,17 +34,17 @@ public class AppUser {
 
     // 1 user có nhiều order
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Order> orders;
+    private List<Orderr> orders;
 
     public AppUser() {
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -95,11 +95,11 @@ public class AppUser {
         this.feedbacks = feedbacks;
     }
 
-    public List<Order> getOrders() {
+    public List<Orderr> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Orderr> orders) {
         this.orders = orders;
     }
 }

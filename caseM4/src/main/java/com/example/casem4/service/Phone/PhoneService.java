@@ -17,10 +17,16 @@ public class PhoneService implements IPhoneService {
     public Page<Phone> findAll(Pageable pageable) {
         return phoneRepository.findAll(pageable);
     }
-
+    
     // Phương thức tìm kiếm sản phẩm theo tên
     @Override
     public Page<Phone> searchPhonesByName(String name, Pageable pageable) {
         return phoneRepository.findByNameContainingIgnoreCase(name, pageable);
     }
+
+    @Override
+    public Phone findById(Integer phoneId) {
+        return phoneRepository.findPhoneByPhoneId(phoneId);
+    }
+    
 }

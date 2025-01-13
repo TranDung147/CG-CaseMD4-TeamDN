@@ -9,26 +9,26 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cart_id;
+    private Integer cartId;
 
     //1 Cart là của 1 User
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private AppUser appUser;
 
     //1 Cart có nhiều điện thoại
-    @OneToMany(mappedBy = "cart_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cartId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems = new ArrayList<>();
 
     public Cart() {
     }
 
     public Integer getCartID() {
-        return cart_id;
+        return cartId;
     }
 
-    public void setCartID(Integer cart_id) {
-        this.cart_id = cart_id;
+    public void setCartID(Integer cartId) {
+        this.cartId = cartId;
     }
 
     public AppUser getUser() {

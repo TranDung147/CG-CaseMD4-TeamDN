@@ -7,17 +7,17 @@ import jakarta.persistence.*;
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer orderDetailId;
 
     // 1 OrderDetail thuộc về 1 Order
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id") // Liên kết tới Order
-    private Order order;
+    @JoinColumn(name = "orderId", referencedColumnName = "orderId") // Liên kết tới Order
+    private Orderr order;
 
     // 1 OrderDetail thuộc về 1 Phone
     @ManyToOne
-    @JoinColumn(name = "phone_id", referencedColumnName = "phone_id") // Liên kết tới Phone
-    private Phone phone;
+    @JoinColumn(name = "phoneId", referencedColumnName = "phoneId") // Liên kết tới Phone
+    private Phone phoneId;
 
     private Integer quantity;
     private Long price;
@@ -26,27 +26,27 @@ public class OrderDetail {
     }
 
     public Integer getId() {
-        return id;
+        return orderDetailId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
-    public Order getOrder() {
+    public Orderr getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Orderr order) {
         this.order = order;
     }
 
     public Phone getPhone() {
-        return phone;
+        return phoneId;
     }
 
     public void setPhone(Phone phone) {
-        this.phone = phone;
+        this.phoneId = phone;
     }
 
     public Integer getQuantity() {

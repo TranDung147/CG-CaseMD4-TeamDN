@@ -2,49 +2,49 @@ package com.example.casem4.model;
 
 import jakarta.persistence.*;
 @Entity
-@Table(name = "cart_item")
+@Table(name = "cartItem")
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer cartItemId;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id")
-    private Cart cart_id;
+    @JoinColumn(name = "cartId", referencedColumnName = "cartId")
+    private Cart cartId;
 
     @ManyToOne
-    @JoinColumn(name = "phone_id", referencedColumnName = "phone_id")
-    private Phone phone;
+    @JoinColumn(name = "phoneId", referencedColumnName = "phoneId")
+    private Phone phoneId;
 
     private Integer quantity;
-    private Long price;
-    private Long TotalPrice;
+    private Double price;
+    private Double TotalPrice;
 
     public CartItem() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getCartItemId() {
+        return cartItemId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCartItemId(Integer cartItemId) {
+        this.cartItemId = cartItemId;
     }
 
     public Cart getCart() {
-        return cart_id;
+        return cartId;
     }
 
     public void setCart(Cart cart) {
-        this.cart_id = cart;
+        this.cartId = cart;
     }
 
     public Phone getPhone() {
-        return phone;
+        return phoneId;
     }
 
     public void setPhone(Phone phone) {
-        this.phone = phone;
+        this.phoneId = phone;
     }
 
     public Integer getQuantity() {
@@ -55,19 +55,31 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Long getTotalPrice() {
+    public Double getTotalPrice() {
         return TotalPrice;
     }
 
-    public void setTotalPrice(Long totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         TotalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "cartItemId=" + cartItemId +
+                ", cartId=" + cartId +
+                ", phoneId=" + phoneId +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", TotalPrice=" + TotalPrice +
+                '}';
     }
 }

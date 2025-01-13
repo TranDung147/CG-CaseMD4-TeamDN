@@ -10,7 +10,7 @@ public class Phone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer phone_id;
+    private Integer phoneId;
 
     private String name;
 
@@ -26,14 +26,14 @@ public class Phone {
     private String imgURL;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brandId")
     private Brand brand;
 
-    @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "phoneId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems = new ArrayList<>();
 
     // 1 Phone có thể xuất hiện trong nhiều OrderDetail
-    @OneToMany(mappedBy = "phone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "phoneId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetails;
 
     // 1 Phone có nhiều Feedback
@@ -67,12 +67,12 @@ public class Phone {
         this.cartItems = cartItems;
     }
 
-    public Integer getPhone_id() {
-        return phone_id;
+    public Integer getPhoneId() {
+        return phoneId;
     }
 
-    public void setPhone_id(Integer phone_id) {
-        this.phone_id = phone_id;
+    public void setPhoneId(Integer phoneId) {
+        this.phoneId = phoneId;
     }
 
     public String getName() {
