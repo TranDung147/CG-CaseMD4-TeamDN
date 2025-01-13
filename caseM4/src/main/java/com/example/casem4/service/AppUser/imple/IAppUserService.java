@@ -6,4 +6,5 @@ public interface IAppUserService {
     boolean authenticateUser(String username, String password);
     boolean registerUser(AppUserDTO appUserDTO);
     boolean resetPassword(String email);
+
 }
