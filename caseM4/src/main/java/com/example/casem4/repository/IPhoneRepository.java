@@ -9,4 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface IPhoneRepository extends JpaRepository<Phone, Integer> {
     @Query(value = "select p from Phone p join fetch p.brand")
     Page<Phone> findAll(Pageable pageable);
+
+    // Tìm kiếm điện thoại theo tên
+    @Query("SELECT p FROM Phone p WHERE p.name LIKE %?1%")
+    Page<Phone> searchPhones(String search, Pageable pageable);
 }

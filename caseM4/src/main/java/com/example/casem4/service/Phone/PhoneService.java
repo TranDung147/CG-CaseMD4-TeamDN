@@ -22,4 +22,21 @@ public class PhoneService implements IPhoneService {
         return phoneRepository.findAll(pageable);
     }
 
+    // Tìm kiếm điện thoại
+    public Page<Phone> searchPhones(String search, Pageable pageable) {
+        return phoneRepository.searchPhones(search, pageable);
+    }
+
+    public Phone getPhoneById(Integer phoneId) {
+        return phoneRepository.findById(phoneId).orElse(null);
+    }
+
+    public void updatePhone(Phone phone) {
+        phoneRepository.save(phone);
+    }
+
+    public void deletePhone(Integer phoneId) {
+        phoneRepository.deleteById(phoneId);
+    }
+
 }
