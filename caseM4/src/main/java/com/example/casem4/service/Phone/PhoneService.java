@@ -22,4 +22,9 @@ public class PhoneService implements IPhoneService {
         return phoneRepository.findAll(pageable);
     }
 
+    @Override
+    public Phone findById(Integer phoneId) {
+        return phoneRepository.findPhoneByPhoneId(phoneId);
+    }
+
 }

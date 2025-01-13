@@ -109,5 +109,8 @@ VALUES
     ('Vivo T1 Pro 5G', 128, 8, 'Turbo Black', 7100000, 'China', 5, '/Images/Vivo/Vivo_T1_Pro_5G.jpg'),
     ('Vivo Y02', 64, 3, 'Fluorite Blue', 18900000, 'China', 5, '/Images/Vivo/Vivo_Y02.webp');
 
-INSERT INTO user_detail (name, email, phone, address, user_id)
-VALUES ('Nguyễn Văn Admin', 'admin@gmail.com', '0123456789', 'Codegym', 1);
+# INSERT INTO user_detail (name, email, phone, address, userId)
+# VALUES ('Nguyễn Văn Admin', 'admin@gmail.com', '0123456789', 'Codegym', 1);
+INSERT INTO cart(cart_id, user_id) VALUES (1,2);
+insert INTO cart_item(total_price, price, quantity, cart_id, phone_id)
+values (5000000, 5000000, 1, 1, 4);

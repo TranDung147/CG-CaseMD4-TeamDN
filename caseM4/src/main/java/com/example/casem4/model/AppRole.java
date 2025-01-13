@@ -8,7 +8,7 @@ public class AppRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int role_id;
+    private int roleId;
 
     private String role;
 
@@ -19,8 +19,8 @@ public class AppRole {
     }
 
 
-    public AppRole(int role_id, String role) {
-        this.role_id = role_id;
+    public AppRole(int roleId, String role) {
+        this.roleId = roleId;
         this.role = role;
     }
 
@@ -28,12 +28,12 @@ public class AppRole {
         this.role = role;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getRole() {

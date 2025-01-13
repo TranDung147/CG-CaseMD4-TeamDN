@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+hello
+<!--<div class="container my-5">-->
+<!--    <h1 class="text-center mb-4">Your Cart</h1>-->
+
+<!--    <table class="table table-striped table-bordered">-->
+<!--        <thead class="table-dark">-->
+<!--        <tr>-->
+<!--            <th>#</th>-->
+<!--            <th>Phone Name</th>-->
+<!--            <th>Quantity</th>-->
+<!--            <th>Price</th>-->
+<!--            <th>Total Price</th>-->
+<!--            <th>Actions</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        &lt;!&ndash; Loop through CartItems &ndash;&gt;-->
+<!--        <tr th:each="cartItem, stat : ${cartItems}">-->
+<!--            <td th:text="${stat.index + 1}"></td>-->
+<!--            <td th:text="${cartItem.phone.name}"></td>-->
+<!--            <td th:text="${cartItem.quantity}"></td>-->
+<!--            <td th:text="${cartItem.price}"></td>-->
+<!--            <td th:text="${cartItem.totalPrice}"></td>-->
+<!--            <td>-->
+<!--                <button class="btn btn-primary btn-sm me-1" th:onclick="|updateQuantity(${cartItem.id})|">Update</button>-->
+<!--                <button class="btn btn-danger btn-sm" th:onclick="|removeItem(${cartItem.id})|">Remove</button>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <div class="text-end mt-4">-->
+<!--        <button class="btn btn-success" th:onclick="checkout()">Checkout</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    // JavaScript for actions-->
+<!--    function updateQuantity(id) {-->
+<!--        alert(`Update quantity for item ID: ${id}`);-->
+<!--        // Add AJAX call or form submission logic here-->
+<!--    }-->
+
+<!--    function removeItem(id) {-->
+<!--        alert(`Remove item ID: ${id}`);-->
+<!--        // Add AJAX call or form submission logic here-->
+<!--    }-->
+
+<!--    function checkout() {-->
+<!--        alert('Proceeding to checkout!');-->
+<!--        // Add checkout logic here-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

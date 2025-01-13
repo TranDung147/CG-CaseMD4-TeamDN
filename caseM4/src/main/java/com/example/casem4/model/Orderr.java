@@ -7,16 +7,16 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Order {
+public class Orderr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer order_id;
+    private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private AppUser appUser;
 
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
     private Integer status;
     private Long totalPrice;
 
@@ -24,7 +24,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetails;
 
-    public Order() {
+    public Orderr() {
     }
 
     public List<OrderDetail> getOrderDetails() {
@@ -35,12 +35,12 @@ public class Order {
         this.orderDetails = orderDetails;
     }
 
-    public Integer getOrder_id() {
-        return order_id;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public AppUser getUser() {
@@ -51,12 +51,12 @@ public class Order {
         this.appUser = user;
     }
 
-    public LocalDateTime getCreated_date() {
-        return created_date;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(LocalDateTime created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Integer getStatus() {

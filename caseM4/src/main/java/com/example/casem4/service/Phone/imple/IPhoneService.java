@@ -6,4 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface IPhoneService {
     Page<Phone> findAll(Pageable pageable);
+    Phone findById(Integer phoneId);
 }

@@ -8,16 +8,16 @@ public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer feedback_id;
+    private Integer feedbackId;
 
     // 1 Feedback là của 1 User
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id") // Liên kết tới AppUser
+    @JoinColumn(name = "userId", referencedColumnName = "userId") // Liên kết tới AppUser
     private AppUser appUser;
 
     // 1 Feedback chỉ dành cho 1 Phone
     @ManyToOne
-    @JoinColumn(name = "phone_id", referencedColumnName = "phone_id") // Liên kết tới Phone
+    @JoinColumn(name = "phoneId", referencedColumnName = "phoneId") // Liên kết tới Phone
     private Phone phone;
 
     private String content;
@@ -25,12 +25,12 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Integer getFeedback_id() {
-        return feedback_id;
+    public Integer getFeedbackId() {
+        return feedbackId;
     }
 
-    public void setFeedback_id(Integer feedback_id) {
-        this.feedback_id = feedback_id;
+    public void setFeedbackId(Integer feedbackId) {
+        this.feedbackId = feedbackId;
     }
 
     public AppUser getUser() {
