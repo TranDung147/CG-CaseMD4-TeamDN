@@ -16,7 +16,7 @@ public class CartService implements ICartService {
     private ICartRepository cartRepository;
 
     @Override
-    public List<Cart> getCartById(Integer cartId) {
+    public Cart getCartById(Integer cartId) {
         return cartRepository.findByCartId(cartId);
     }
 
@@ -25,6 +25,11 @@ public class CartService implements ICartService {
         Cart newCart = new Cart();
         newCart.setUser(new AppUser());
         return cartRepository.save(newCart);
+    }
+
+    @Override
+    public Cart getCartByUserId(Integer userId) {
+        return cartRepository.findCartsByUserId(userId);
     }
 
 }

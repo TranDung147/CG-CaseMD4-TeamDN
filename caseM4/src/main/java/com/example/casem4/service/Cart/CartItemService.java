@@ -7,6 +7,7 @@ import com.example.casem4.repository.ICartItemRepository;
 import com.example.casem4.repository.ICartRepository;
 import com.example.casem4.repository.IPhoneRepository;
 import com.example.casem4.service.Cart.imple.ICartItemService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CartItemService implements ICartItemService {
     @Autowired
     private ICartItemRepository cartItemRepository;
@@ -24,33 +26,52 @@ public class CartItemService implements ICartItemService {
     @Autowired
     private IPhoneRepository phoneRepository;
 
-
     @Override
-    public CartItem addPhoneToCart(Integer cartId, Integer phoneId, Integer quantity) {
-        List<Cart> cart = cartRepository.findByCartId(cartId);
-        if (cart.isEmpty())
-            throw new RuntimeException("No cart found with ID: " + cartId);
+    public void addPhoneToCart(Integer cartId, Integer phoneId, Integer quantity, Double price, Double totalPrice) {
+        Cart cart = cartRepository.findByCartId(cartId);
         Phone phone = phoneRepository.findPhoneByPhoneId(phoneId);
+        CartItem cartItem = new CartItem();
+        cartItem.setCart(cart);
+        cartItem.setPhone(phone);
+        cartItem.setQuantity(quantity);
+        cartItem.setPrice(price);
+        cartItem.setTotalPrice(totalPrice);
+        if (cart == null)
+            throw new RuntimeException("No cart found with ID: " + cartId);
         if (phone == null) {
             throw new RuntimeException("No phone found with ID: " + phoneId);
         }
-
-        List<CartItem> existingItems = cartItemRepository.findByCartIdAndPhoneId(cartId, phoneId);
-        if (!existingItems.isEmpty()) {
-            CartItem existingItem = existingItems.get(0);
+        CartItem existingItem = cartItemRepository.findByCartIdAndPhoneId(cartId, phoneId);
+        if (existingItem != null) {
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
-            return cartItemRepository.save(existingItem);
+            existingItem.setTotalPrice(existingItem.getPrice() * quantity);
+            cartItemRepository.save(existingItem);
         } else {
-            CartItem cartItem = new CartItem();
-            cartItem.setCart(cart.get(0));
+            cartItem = new CartItem();
+            cartItem.setCart(cartRepository.findByCartId(cartId));
             cartItem.setPhone(phone);
             cartItem.setQuantity(quantity);
-            return cartItemRepository.save(cartItem);
+            cartItem.setPrice(price);
+            cartItem.setTotalPrice(price * quantity);
+            cartItemRepository.save(cartItem);
         }
     }
 
     @Override
-    public List<CartItem> getCartItems(Integer cartId, Integer phoneId) {
-        return cartItemRepository.findByCartIdAndPhoneId(cartId, phoneId);
+    public List<CartItem> getCartItems(Integer cartId) {
+        return cartItemRepository.findCartItemsByCartId(cartId);
+    }
+
+    @Override
+    public List<CartItem> getCartItemByCartId(Integer cartId) {
+        return cartItemRepository.findCartItemsByCartId(cartId);
+    }
+
+    @Override
+    public void removeCartItem(Integer cartItemId) {
+        if (!cartItemRepository.existsById(cartItemId)) {
+            throw new RuntimeException("Cart item not found.");
+        }
+        cartItemRepository.deleteById(cartItemId);
     }
 }

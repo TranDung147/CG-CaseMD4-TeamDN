@@ -1,7 +1,10 @@
 package com.example.casem4.controller.user_login;
 
+import com.example.casem4.model.AppUser;
+import com.example.casem4.model.Cart;
 import com.example.casem4.model.DTO.AppUserDTO;
 import com.example.casem4.service.AppUser.imple.IAppUserService;
+import com.example.casem4.service.Cart.imple.ICartService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +16,18 @@ public class LoginController {
 
     @Autowired
     private IAppUserService appUserService;
+    @Autowired
+    private ICartService cartService;
 
     @GetMapping("/login")
-    public String showLoginPage() {
+    public String showLoginPage(HttpSession session, Model model) {
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        if (loggedInUser != null) {
+            model.addAttribute("isLoggedIn", true);
+            model.addAttribute("username", loggedInUser);
+        } else {
+            model.addAttribute("isLoggedIn", false);
+        }
         return "Authen/login";
     }
 
@@ -28,7 +40,10 @@ public class LoginController {
             }
             boolean isValidUser = appUserService.authenticateUser(appUserDTO.getUsername(), appUserDTO.getPassword());
             if (isValidUser) {
-                session.setAttribute("loggedInUser", appUserDTO.getUsername());
+                AppUser user = appUserService.findUserByUsername(appUserDTO.getUsername());
+                Cart cart = cartService.getCartByUserId(user.getUserId());
+                session.setAttribute("loggedInUser", user.getUsername());
+                session.setAttribute("cartId", cart.getCartID());
                 return "redirect:/";
             } else {
                 model.addAttribute("error", "Tài khoản hoặc mật khẩu không đúng.");

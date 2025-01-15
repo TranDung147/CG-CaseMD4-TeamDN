@@ -53,7 +53,10 @@
                     <p th:class="'card-text'">
                         <small th:text="'Màu sắc: ' + ${p.color} + ' | Xuất xứ: ' + ${p.origin}"></small>
                     </p>
+                    <a th:href="@{/cart}" th:text="mua"></a>
                     <form th:action="@{/cart}" method="post">
+                        <input type="hidden" name="phone_id" th:value="${p.phoneId}" />
+                        <input type="hidden" name="quantity" value="1" />
                         <button type="submit" th:class="'btn btn-primary w-100'" th:text="'Mua ngay'"></button>
                     </form>
                 </div>
