@@ -1,6 +1,6 @@
 package com.example.casem4.service.Order;
 
-import com.example.casem4.model.Order;
+import com.example.casem4.model.Orderr;
 import com.example.casem4.repository.IOrderRepository;
 import com.example.casem4.service.Order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class OrderService implements IOrderService {
     private IOrderRepository orderRepository;
 
     @Override
-    public List<Order> getAllOrders() {
+    public List<Orderr> getAllOrders() {
         return orderRepository.findAll();
     }
 }

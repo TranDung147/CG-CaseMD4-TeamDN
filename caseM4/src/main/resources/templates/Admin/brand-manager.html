@@ -48,11 +48,11 @@
         </thead>
         <tbody>
         <tr th:each="brand : ${brands}">
-          <td th:text="${brand.brand_id}"></td>
+          <td th:text="${brand.brandId}"></td>
           <td th:text="${brand.name}"></td>
           <td>
-            <a th:href="@{/admin-home/brand-manager/edit/{brand_id}(brand_id=${brand.brand_id})}" class="btn btn-warning btn-sm">Chỉnh sửa</a>
-            <form th:action="@{/admin-home/brand-manager/delete/{brand_id}(brand_id=${brand.brand_id})}" method="post" class="d-inline">
+            <a th:href="@{/admin-home/brand-manager/edit/{brandId}(brandId=${brand.brandId})}" class="btn btn-warning btn-sm">Chỉnh sửa</a>
+            <form th:action="@{/admin-home/brand-manager/delete/{brandId}(brandId=${brand.brandId})}" method="post" class="d-inline">
               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</button>
             </form>
           </td>

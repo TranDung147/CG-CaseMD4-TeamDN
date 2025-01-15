@@ -72,6 +72,11 @@ public class AppUserService implements IAppUserService {
         return false;
     }
 
+    @Override
+    public AppUser findUserByUsername(String username) {
+        return appUserRepository.findByUsername(username);
+    }
+
     // Thêm phương thức lấy thông tin chi tiết người dùng
     public UserDetail getUserDetailById(Integer id) {
         return appUserDetailRepository.findById(id).orElse(null);

@@ -39,6 +39,22 @@ public class CartItem {
         this.cartId = cart;
     }
 
+    public Cart getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Cart cartId) {
+        this.cartId = cartId;
+    }
+
+    public Phone getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(Phone phoneId) {
+        this.phoneId = phoneId;
+    }
+
     public Phone getPhone() {
         return phoneId;
     }

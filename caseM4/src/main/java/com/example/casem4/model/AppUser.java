@@ -10,7 +10,7 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;  // Đổi kiểu dữ liệu từ Integer sang Long
+    private Integer userId;  // Đổi kiểu dữ liệu từ Integer sang Long
 
     private String username;
     private String password;
@@ -39,11 +39,11 @@ public class AppUser {
     public AppUser() {
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

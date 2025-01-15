@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface IPhoneRepository extends JpaRepository<Phone, Integer> {
     @Query(value = "select p from Phone p join fetch p.brand")
     Page<Phone> findAll(Pageable pageable);
+    Page<Phone> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    Phone findPhoneByPhoneId(Integer phoneId);
 }

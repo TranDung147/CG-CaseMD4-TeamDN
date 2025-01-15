@@ -8,60 +8,76 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-hello
-<!--<div class="container my-5">-->
-<!--    <h1 class="text-center mb-4">Your Cart</h1>-->
+<div class="container my-5">
+    <h1 class="text-center mb-4">Your Cart</h1>
 
-<!--    <table class="table table-striped table-bordered">-->
-<!--        <thead class="table-dark">-->
-<!--        <tr>-->
-<!--            <th>#</th>-->
-<!--            <th>Phone Name</th>-->
-<!--            <th>Quantity</th>-->
-<!--            <th>Price</th>-->
-<!--            <th>Total Price</th>-->
-<!--            <th>Actions</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        &lt;!&ndash; Loop through CartItems &ndash;&gt;-->
-<!--        <tr th:each="cartItem, stat : ${cartItems}">-->
-<!--            <td th:text="${stat.index + 1}"></td>-->
-<!--            <td th:text="${cartItem.phone.name}"></td>-->
-<!--            <td th:text="${cartItem.quantity}"></td>-->
-<!--            <td th:text="${cartItem.price}"></td>-->
-<!--            <td th:text="${cartItem.totalPrice}"></td>-->
-<!--            <td>-->
-<!--                <button class="btn btn-primary btn-sm me-1" th:onclick="|updateQuantity(${cartItem.id})|">Update</button>-->
-<!--                <button class="btn btn-danger btn-sm" th:onclick="|removeItem(${cartItem.id})|">Remove</button>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
+    <form id="delete-form" th:action="@{/cartItem/remove}" method="post" style="display: none;">
+        <input type="hidden" name="cartItemId" id="cart-item-id">
+    </form>
 
-<!--    <div class="text-end mt-4">-->
-<!--        <button class="btn btn-success" th:onclick="checkout()">Checkout</button>-->
-<!--    </div>-->
-<!--</div>-->
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Phone Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through CartItems -->
+        <tr th:each="cartItem, stat : ${cartItems}">
+            <td th:text="${stat.index + 1}"></td>
+            <td th:text="${cartItem.phone.name}"></td>
+            <td th:text="${cartItem.quantity}"></td>
+            <td th:text="${cartItem.price}"></td>
+            <td th:text="${cartItem.totalPrice}"></td>
+            <td>
+                <button class="btn btn-primary btn-sm me-1" th:onclick="|updateQuantity(${cartItem.cartItemId})|">Update</button>
+                <button class="btn btn-danger btn-sm" onclick="removeItem(event, [[${cartItem.cartItemId}]])">Remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<!--&lt;!&ndash; Bootstrap JS &ndash;&gt;-->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
-<!--<script>-->
-<!--    // JavaScript for actions-->
-<!--    function updateQuantity(id) {-->
-<!--        alert(`Update quantity for item ID: ${id}`);-->
-<!--        // Add AJAX call or form submission logic here-->
-<!--    }-->
+    <div class="text-end mt-4">
+        <button class="btn btn-success" th:onclick="checkout()">Checkout</button>
+    </div>
+</div>
 
-<!--    function removeItem(id) {-->
-<!--        alert(`Remove item ID: ${id}`);-->
-<!--        // Add AJAX call or form submission logic here-->
-<!--    }-->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // JavaScript for actions
+    function updateQuantity(id) {
+        alert(`Update quantity for item ID: ${id}`);
+        // Add AJAX call or form submission logic here
+    }
 
-<!--    function checkout() {-->
-<!--        alert('Proceeding to checkout!');-->
-<!--        // Add checkout logic here-->
-<!--    }-->
-<!--</script>-->
+    function removeItem(event, cartItemId) {
+        event.preventDefault(); // Ngăn trình duyệt reload trang
+        if (confirm("Are you sure you want to remove this item from your cart?")) {
+            // Điền giá trị vào form ẩn
+            document.getElementById("cart-item-id").value = cartItemId;
+
+            // Gửi form
+            document.getElementById("delete-form").submit();
+
+            // Xóa hàng khỏi bảng ngay lập tức
+            const row = document.getElementById(`cart-item-row-${cartItemId}`);
+            if (row) {
+                row.remove();
+            }
+        }
+    }
+
+
+    function checkout() {
+        alert('Proceeding to checkout!');
+        // Add checkout logic here
+    }
+</script>
 </body>
 </html>

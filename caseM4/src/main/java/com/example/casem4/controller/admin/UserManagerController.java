@@ -21,7 +21,7 @@ public class UserManagerController {
     public String viewUserList(Model model) {
         List<UserDetail> userList = userDetailService.getUserDetailsFromId(3)
                 .stream()
-                .filter(user -> user.getId() != 1)
+                .filter(user -> user.getUserDetailId() != 1)
                 .collect(Collectors.toList());
         model.addAttribute("users", userList);
         return "Admin/user-management";
