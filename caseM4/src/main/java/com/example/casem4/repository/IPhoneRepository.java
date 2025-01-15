@@ -11,4 +11,7 @@ public interface IPhoneRepository extends JpaRepository<Phone, Integer> {
     Page<Phone> findAll(Pageable pageable);
     Page<Phone> findByNameContainingIgnoreCase(String name, Pageable pageable);
     Phone findPhoneByPhoneId(Integer phoneId);
+    // Tìm kiếm điện thoại theo tên
+    @Query("SELECT p FROM Phone p WHERE p.name LIKE %?1%")
+    Page<Phone> searchPhones(String search, Pageable pageable);
 }
